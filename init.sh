@@ -24,7 +24,7 @@ if [ "$os" == "centos" ] || [ "$os" == "redhat" ] ; then
 	if ! res=$(yum list installed | grep -i "virtualbox" ) ; then 
 		echo "VirtualBox was not found, installing..."
 		cd /etc/yum.repos.d/
-		wget http://download.virtualbox.org/virtualbox/rpm/rhel/virtualbox.repo
+		wget http://download.virtualbox.org/virtualbox/rpm/rhel/virtualbox.repo > /dev/null
 		yum -y install VirtualBox-5.2 > /dev/null
 		if [ $? -ne 0 ] ; then
 			echo "Install was not successful! Aborting..."
@@ -35,7 +35,6 @@ if [ "$os" == "centos" ] || [ "$os" == "redhat" ] ; then
 	else
 		echo "VirtualBox already installed"
 	fi
-	unset $res
 	if ! res=$(yum list installed | grep -i "vagrant" ) ; then
 		echo "Vagrant was not found, installing..."
 		yum -y install https://releases.hashicorp.com/vagrant/2.1.4/vagrant_2.1.4_x86_64.rpm > /dev/null
@@ -50,11 +49,9 @@ if [ "$os" == "centos" ] || [ "$os" == "redhat" ] ; then
 	else
                 echo "Vagrant already installed"
 	fi
-	unset $res
         if ! res=$(yum list installed | grep -i "ansible" ) ; then
                 echo "Ansible was not found, installing..."
                 yum -y install ansible > /dev/null
-                mkdir ~/vagrant-home
                 if [ $? -ne 0 ] ; then
                         echo "Install was not successful! Aborting..."
                         exit 1
@@ -65,4 +62,7 @@ if [ "$os" == "centos" ] || [ "$os" == "redhat" ] ; then
         else
                 echo "ansible already installed"
         fi
+
+if [ "$os" == "ubuntu" ] || [ "$os" == "debian" ] ; then
+	echo "Ubuntu/debian support will be added later..."
 fi
