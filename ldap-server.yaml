@@ -4,4 +4,4 @@
 
 - hosts: client
   roles:
-- { role: homework.client }
+    - { role: homework.client }
