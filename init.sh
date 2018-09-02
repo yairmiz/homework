@@ -66,3 +66,5 @@ if [ "$os" == "centos" ] || [ "$os" == "redhat" ] ; then
 if [ "$os" == "ubuntu" ] || [ "$os" == "debian" ] ; then
 	echo "Ubuntu/debian support will be added later..."
 fi
+
+vagrant plugin install vagrant-hostsupdater

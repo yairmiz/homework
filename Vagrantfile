@@ -5,11 +5,11 @@ Vagrant.configure("2") do |config|
     ldap.vm.box_url = "ubuntu/trusty64"
 
     ldap.vm.network :private_network, ip: "192.168.2.100"
-
     ldap.vm.provider :virtualbox do |v|
       v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
       v.customize ["modifyvm", :id, "--memory", 512]
       v.customize ["modifyvm", :id, "--name", "ldap"]
+      v.customize ["modifyvm", :id, "--cableconnected1", "on"]
     end
   end
 
@@ -24,6 +24,7 @@ Vagrant.configure("2") do |config|
       v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
       v.customize ["modifyvm", :id, "--memory", 512]
       v.customize ["modifyvm", :id, "--name", "client"]
+      v.customize ["modifyvm", :id, "--cableconnected1", "on"]
     end
   end
 end
