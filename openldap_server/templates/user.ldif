@@ -4,7 +4,7 @@ givenName: Ldap
 sn: Test
 uid: ldaptest
 uidNumber: 5159
-gidNumber: 5159
+gidNumber: 100
 homeDirectory: /home/ldaptest
 loginShell: /bin/bash
 objectClass: top
