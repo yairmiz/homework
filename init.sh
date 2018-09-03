@@ -62,6 +62,7 @@ if [ "$os" == "centos" ] || [ "$os" == "redhat" ] ; then
         else
                 echo "ansible already installed"
         fi
+fi
 
 if [ "$os" == "ubuntu" ] || [ "$os" == "debian" ] ; then
 	echo "Ubuntu/debian support will be added later..."
