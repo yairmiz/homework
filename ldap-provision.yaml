@@ -1,7 +1,3 @@
-- hosts: ldap
+- hosts: all
   roles:
-    - { role: homework.openldap }
-
-- hosts: client
-  roles:
-    - { role: homework.client }
+  - homework
