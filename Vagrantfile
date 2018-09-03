@@ -1,5 +1,5 @@
 Vagrant.configure("2") do |config|
-  config.vm.define "ldap" do |ldap|
+ config.vm.define "ldap" do |ldap|
     ldap.vm.box = "ubuntu/trusty64"
     ldap.vm.hostname = 'ldap'
     ldap.vm.box_url = "ubuntu/trusty64"
@@ -11,6 +11,12 @@ Vagrant.configure("2") do |config|
       v.customize ["modifyvm", :id, "--name", "ldap"]
       v.customize ["modifyvm", :id, "--cableconnected1", "on"]
     end
+ config.vm.provision "ansible" do |ansible|
+ ansible.verbose = "v"
+ ansible.playbook = "ldap-provision.yaml"
+ ansible.tags = "openldap"
+  end
+
   end
 
   config.vm.define "client" do |client|
