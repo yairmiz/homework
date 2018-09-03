@@ -10,15 +10,46 @@
   with_dict: "{{ ldap_auth_config }}"
   register: ldap_debconf
 
-- name: install ldap-auth-client
-  apt: pkg=ldap-auth-client state=present
+- name: install libnss-ldap
+  apt: pkg=libnss-ldap state=present
   register: ldap_install
 
-- name: install unscd
-  apt: pkg=unscd state=present
+- name: install libpam-ldap
+  apt: pkg=libpam-ldap state=present
+  register: ldap_install
+
+- name: install ldap-utils
+  apt: pkg=ldap-utils state=present
+  register: ldap_install
+
+- name: install nscd
+  apt: pkg=nscd state=present
   when: ldap_nscd
 
-- name: reconfigure ldap-auth-config
-  shell: dpkg-reconfigure --frontend noninteractive ldap-auth-config
-  when: ldap_debconf.changed and (not ldap_install.changed)
-  notify: restart unscd
+- name: add ldap to passwd in nss file
+  lineinfile:
+    path: /etc/nsswitch.conf
+    regexp: '^passwd'
+    line: 'passwd:         compat ldap'
+
+- name: add ldap to group in nss file
+  lineinfile:
+    path: /etc/nsswitch.conf
+    regexp: '^group'
+    line: 'group:          compat ldap'
+
+- name: add ldap to shadow in nss file
+  lineinfile:
+    path: /etc/nsswitch.conf
+    regexp: '^shadow'
+    line: 'shadow:         compat ldap'
+
+- name: add auto create home directory to PAM
+  lineinfile:
+    path: /etc/pam.d/common-session
+    line: 'session required        pam_mkhomedir.so skel=/etc/skel umask=077'
+
+- name: Restart nscd service
+  service:
+    name: nscd
+    state: restarted

@@ -5,17 +5,3 @@
 - hosts: client
   roles:
   - openldap_client
-    tags: ldap
-      ldap_auth_config:
-        ldapns/base-dn:
-          type: string
-          value: "dc=example,dc=com"
-        ldapns/ldap-server:
-          type: string
-          value: "ldap://192.168.2.100"
-        pam_password:
-          type: select
-          value: exop
-        dbrootlogin:
-          type: boolean
-          value: false

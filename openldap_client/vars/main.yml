@@ -21,7 +21,7 @@ ldap_auth_config:
   # Unprivileged database user
   binddn:
     type: string
-    value: "cn=proxyuser,dc=example,dc=com"
+    value: "cn=manager,dc=example,dc=com"
   # Password for database login account
   bindpw:
     type: password
@@ -35,7 +35,7 @@ ldap_auth_config:
     value: 3
   ldapns/ldap-server:
     type: string
-    value: "ldapi://192.168.1.100/"
+    value: "ldap://192.168.2.100/"
   pam_password:
     # Choices: clear, crypt, nds, ad, exop, md5
     type: select
