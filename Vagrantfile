@@ -11,11 +11,11 @@ Vagrant.configure("2") do |config|
       v.customize ["modifyvm", :id, "--name", "ldap"]
       v.customize ["modifyvm", :id, "--cableconnected1", "on"]
     end
- config.vm.provision "ansible" do |ansible|
- ansible.verbose = "v"
- ansible.playbook = "ldap-provision.yaml"
- ansible.tags = "openldap"
-  end
+ config.vm.provision "ansible_local" do |ansible|
+     ansible.become = true
+     ansible.verbose = "v"
+     ansible.playbook = "ldap-provision.yaml"
+    end
 
   end
 

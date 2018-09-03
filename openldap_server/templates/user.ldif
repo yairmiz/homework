@@ -1,0 +1,14 @@
+dn: uid=ldapuser,ou=People,dc={{ openldap_server_domain_name.split('.')[0] }},dc={{ openldap_server_domain_name.split('.')[1] }}
+cn: Ldap Test
+givenName: Ldap
+sn: Test
+uid: ldaptest
+uidNumber: 5159
+gidNumber: 5159
+homeDirectory: /home/ldaptest
+loginShell: /bin/bash
+objectClass: top
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: shadowAccount
+userPassword: 123456
