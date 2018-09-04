@@ -38,7 +38,6 @@ if [ "$os" == "centos" ] || [ "$os" == "redhat" ] ; then
 	if ! res=$(yum list installed | grep -i "vagrant" ) ; then
 		echo "Vagrant was not found, installing..."
 		yum -y install https://releases.hashicorp.com/vagrant/2.1.4/vagrant_2.1.4_x86_64.rpm > /dev/null
-		mkdir ~/vagrant-home
                 if [ $? -ne 0 ] ; then
                         echo "Install was not successful! Aborting..."
                         exit 1
@@ -49,23 +48,13 @@ if [ "$os" == "centos" ] || [ "$os" == "redhat" ] ; then
 	else
                 echo "Vagrant already installed"
 	fi
-        if ! res=$(yum list installed | grep -i "ansible" ) ; then
-                echo "Ansible was not found, installing..."
-                yum -y install ansible > /dev/null
-                if [ $? -ne 0 ] ; then
-                        echo "Install was not successful! Aborting..."
-                        exit 1
-                else
-                echo "Install complete..."
-                fi
-
-        else
-                echo "ansible already installed"
-        fi
 fi
 
 if [ "$os" == "ubuntu" ] || [ "$os" == "debian" ] ; then
 	echo "Ubuntu/debian support will be added later..."
 fi
 
-vagrant plugin install vagrant-hostsupdater
+echo 'Installing vagrant-hostupdater plugin'
+vagrant plugin install vagrant-hostsupdater > /dev/null
+
+echo "Init script Finished successfuly. please run 'vagrant up' to continue..."
