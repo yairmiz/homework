@@ -9,6 +9,8 @@ Vagrant will provision two VM's with private network addresses:
  * ldap - 192.168.2.100
  * client - 192.168.2.101
 
+installation pre-requisite:
+ * centos 7 host with internet access.
 
 Installtion instructions:
  1. clone git repository 'git clone https://github.com/yairmiz/homework'
