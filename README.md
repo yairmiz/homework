@@ -12,7 +12,7 @@ Vagrant will provision two VM's with private network addresses:
 installation pre-requisite:
  * centos 7 host with internet access.
 
-Installtion instructions:
+Installation instructions:
  1. clone git repository 'git clone https://github.com/yairmiz/homework'
  2. run the provided init.sh script
  3. run 'vagrant up'
