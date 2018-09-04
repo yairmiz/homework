@@ -8,5 +8,5 @@ Installtion instructions:
  1. clone git repository 'git clone https://github.com/yairmiz/homework'
  2. run the provided init.sh script
  3. run 'vagrant up'
- 4. after proviosion completes run 'vagrant ssh client'
+ 4. after provision completes run 'vagrant ssh client'
  5. test ldap user with 'su - ldapuser' password is 123456
