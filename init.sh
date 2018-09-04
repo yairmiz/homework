@@ -22,6 +22,18 @@ fi
 if [ "$os" == "centos" ] || [ "$os" == "redhat" ] ; then
 	echo "installing required packages"
 	if ! res=$(yum list installed | grep -i "virtualbox" ) ; then 
+		echo "wget was not found, installing..."
+		yum -y install wget > /dev/null
+		if [ $? -ne 0 ] ; then
+			echo "Install was not successful! Aborting..."
+			exit 1
+		else
+		echo "Install complete..."
+		fi
+	else
+		echo "wget already installed"
+	fi
+		if ! res=$(yum list installed | grep -i "virtualbox" ) ; then 
 		echo "VirtualBox was not found, installing..."
 		cd /etc/yum.repos.d/
 		wget http://download.virtualbox.org/virtualbox/rpm/rhel/virtualbox.repo > /dev/null
