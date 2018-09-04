@@ -2,7 +2,7 @@
 This git repo has the following:
   * Vagrant config file
   * ansible roles for provisiong an OpenLDAP server and a client VMs (Ubuntu Distro).
-  * init.sh script that will setup the vagrant host with requiered virtualbox and vagrant packages (Compaitble only with Centos for now)
+  * init.sh script that will setup the vagrant host with requiered virtualbox and vagrant packages (Compaitble only with Centos 7 for now)
 
 Installtion instructions:
  1. clone git repository 'git clone https://github.com/yairmiz/homework'
